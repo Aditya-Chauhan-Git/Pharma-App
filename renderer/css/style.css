@@ -1,0 +1,41 @@
+/* Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-areas:
+    "sidebar  topbar"
+    "sidebar  content"
+    "sidebar  footer";
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 52px 1fr 36px;
+}
+
+body > *{
+    border: 2px solid red;
+}
+
+aside {
+    grid-area: sidebar;
+    overflow-y: auto;
+}
+
+header {
+    grid-area: topbar;
+}
+
+main {
+    grid-area: content;
+    overflow-y: auto;
+}
+
+footer {
+    grid-area: footer;
+}
