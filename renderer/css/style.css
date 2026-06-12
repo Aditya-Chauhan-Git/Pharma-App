@@ -7,6 +7,43 @@
     padding: 0;
 }
 
+/* CSS Variables */
+
+:root{
+    --clr-primary: #15803d;
+    --clr-primary-bg: #f0fdf4; 
+
+    --clr-danger: #dc2626;
+
+    --bg-dark: #0f172a;
+    --bg: #f1f5f9;
+    --bg-surface: #ffffff;
+
+    --text: #000000;
+    --text-muted: #333333;
+
+    --radius: 12px;
+
+    --spacing1: 4px;
+    --spacing2: 8px;
+    --spacing3: 16px;
+    --spacing4: 20px;
+    --spacing5: 40px;
+    --spacing6: 160px;
+
+    --ff1: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --ff2: 'DM Mono', monospace;
+
+    --fs-sm: 12px;
+    --fs-md: 14px;
+    --fs-lg: 16px;
+    --fs-xl: 24px;
+
+    --fw-b: 700;
+    --fw-sb: 600;
+    --fw-md: 400;
+}
+
 body {
     height: 100vh;
     display: grid;
@@ -39,3 +76,4 @@ main {
 footer {
     grid-area: footer;
 }
+
