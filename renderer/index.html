@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
     <aside>
+        <div class="brand">
+            <div class="brand__logo">M</div>
+            <div class="brand__name">
+                <div class="title">MPharma</div>
+                <div class="subtitle">Inventory System</div>
+            </div>
+        </div>
         <nav class="nav">
             <ul class="nav__list">
-                <li class="nav__item">Home</li>
-                <li class="nav__item">Inventory</li>
-                <li class="nav__item">Upload</li>
-                <li class="nav__item">History</li>
+                <li class="nav__item"><a href="">🏠 Home</a></li>
+                <li class="nav__item"><a href="">📤 Upload</a></li>
+                <li class="nav__item"><a href="">📋 History</a></li>
             </ul>
         </nav>
     </aside>
-    <header></header>
+    <header class="surface">
+        <h1 class="header__title">Sale Receipt</h1>
+        <div class="current-date">8 Jun 2026</div>
+    </header>
     <main>
-        <input type="text" id="search-bar" class="search-bar" autocomplete="off" placeholder="Search medicine name or brand...">
+        <input class="medicine-searchbar" type="text" id="search-bar" class="search-bar" autocomplete="off"
+            placeholder="🔍 Search medicine name or brand...">
         <table id="receipt-table">
+
             <thead id="receipt-header">
                 <tr>
                     <th>Medicine</th>
@@ -28,13 +41,406 @@
                     <th>Unit Price</th>
                     <th>Discount</th>
                     <th>Amount</th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody id="receipt-body">   
+
+            <tbody id="receipt-body">
+                <!-- rows will be added by JS, this one is just for reference -->
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
+                <tr class="receipt-row">
+
+                    <td class="receipt-row__medicine">
+                        <span class="receipt-row__name">Paracetamol 500mg</span>
+                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
+                    </td>
+
+                    <td class="receipt-row__qty">
+                        <input type="number" class="receipt-input" min="1" max="500" value="1">
+                    </td>
+
+                    <td class="receipt-row__unit-price">₹2.50</td>
+
+                    <td class="receipt-row__discount">
+                        <div class="discount-wrap">
+                            <input type="number" class="receipt-input" min="0" max="100" value="0">
+                            <span class="discount-suffix">%</span>
+                        </div>
+                    </td>
+
+                    <td class="receipt-row__amount">₹2.50</td>
+
+                    <td class="receipt-row__remove">
+                        <button class="remove-btn">×</button>
+                    </td>
+
+                </tr>
             </tbody>
+
         </table>
-        <div class="total-amt"></div>
+
     </main>
+    <section class="receipt-total">
+        <div class="total__summary">
+            <div class="qty-details">2 medicines · 15 units</div>
+            <div>Total: <span class="total-amt">rs 20.5</span></div>
+        </div>
+
+        <div class="receipt-action">
+            <button class="sell-btn" id="sell-btn">✓ Sell</button>
+        </div>
+    </section>
     <footer></footer>
 </body>
+
 </html>

@@ -20,7 +20,7 @@
     --bg-surface: #ffffff;
 
     --text: #000000;
-    --text-muted: #333333;
+    --text-muted: #909090;
 
     --radius: 12px;
 
@@ -34,10 +34,10 @@
     --ff1: 'Plus Jakarta Sans', system-ui, sans-serif;
     --ff2: 'DM Mono', monospace;
 
-    --fs-sm: 12px;
-    --fs-md: 14px;
-    --fs-lg: 16px;
-    --fs-xl: 24px;
+    --fs-sm: .75rem;
+    --fs-md: .875rem;
+    --fs-lg: 1rem;
+    --fs-xl: 1.5rem;
 
     --fw-b: 700;
     --fw-sb: 600;
@@ -50,30 +50,71 @@ body {
     grid-template-areas:
     "sidebar  topbar"
     "sidebar  content"
+    "sidebar  total"
     "sidebar  footer";
     grid-template-columns: 200px 1fr;
-    grid-template-rows: 52px 1fr 36px;
+    grid-template-rows: 52px 1fr auto 36px;
+
+    font-family: var(--ff1);
+    font-size: var(--fs-md);
 }
 
 body > *{
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: var(--text-muted);
+}
+
+
+/* aside */
 
 aside {
     grid-area: sidebar;
     overflow-y: auto;
+
+    background-color: var(--bg-dark);
+    color: var(--text-muted);
 }
 
 header {
     grid-area: topbar;
 }
 
+/* main */
+
 main {
     grid-area: content;
     overflow-y: auto;
+
+    background-color: var(--bg);
+}
+
+.medicine-searchbar{
+    width: 100%;
+}
+
+.receipt-table{
+    overflow: auto;
+}
+
+.receipt-total{
+    grid-area: total;
+    background-color: var(--clr-primary-bg);
 }
 
 footer {
     grid-area: footer;
+}
+
+/* utilities */
+.surface{
+    background-color: var(--bg-surface);
 }
 
