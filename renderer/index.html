@@ -30,8 +30,9 @@
         <div class="current-date">8 Jun 2026</div>
     </header>
     <main>
-        <input class="medicine-searchbar" type="text" id="search-bar" class="search-bar" autocomplete="off"
+        <input class="search-bar" type="text" id="medicine-searchbar" autocomplete="off"
             placeholder="🔍 Search medicine name or brand...">
+        <div id="suggestions" class="suggestions"></div>
         <table id="receipt-table">
 
             <thead id="receipt-header">
@@ -441,6 +442,7 @@
         </div>
     </section>
     <footer></footer>
+    <script src="./js/search.js"></script>
 </body>
 
 </html>
