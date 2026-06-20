@@ -1,7 +1,8 @@
 const medicineSearchElem = document.querySelector('#medicine-searchbar')
 
-medicineSearchElem.addEventListener('change', async (e)=>{
+medicineSearchElem.addEventListener('input', async (e) => {
     const value = e.target.value
+    const msg = await window.api.searchMedicine(value)
 
-    
+    console.log(msg);
 })

@@ -1,5 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
-contextBridge.exposeInMainWorld('ipcRenderer', {
-    send: () => console.log('nice')
+contextBridge.exposeInMainWorld('api', {
+    searchMedicine: (value) => ipcRenderer.invoke('search-medicine', value)
 })
