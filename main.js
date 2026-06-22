@@ -1,10 +1,20 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
-function handleSearch(value) {
-  return 'nice'
+// database connection
+const Database = require('better-sqlite3')
+const dbPath = path.join(app.getPath('userData'), 'pharma.db')
+const db = new Database(dbPath)
+
+db.pragma('journal_mode = WAL')
+
+// search handler function
+function handleSearch(e, value) {
+  console.log(app.getPath('userData'));
+  return db.prepare(`SELECT * FROM medicines WHERE name LIKE ?`).all(`${value}%`)
 }
 
+// main window function
 function createMainWindow(){
   const mainWindow = new BrowserWindow({
     width: 1200,

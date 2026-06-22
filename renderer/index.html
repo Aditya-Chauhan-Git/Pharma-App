@@ -31,9 +31,12 @@
         <div class="current-date">8 Jun 2026</div>
     </header>
     <main>
-        <input class="search-bar" type="text" id="medicine-searchbar" autocomplete="off"
-            placeholder="🔍 Search medicine name or brand...">
-        <div id="suggestions" class="suggestions"></div>
+        <div class="search">
+            <input class="search-bar" type="text" id="medicine-searchbar" autocomplete="off"
+                placeholder="🔍 Search medicine name or brand...">
+            <div id="suggestions" class="suggestions surface">
+            </div>
+        </div>
         <table id="receipt-table">
 
             <thead id="receipt-header">
@@ -373,33 +376,7 @@
                     </td>
 
                 </tr>
-                <tr class="receipt-row">
 
-                    <td class="receipt-row__medicine">
-                        <span class="receipt-row__name">Paracetamol 500mg</span>
-                        <span class="receipt-row__meta">Calpol · ₹2.50/tab</span>
-                    </td>
-
-                    <td class="receipt-row__qty">
-                        <input type="number" class="receipt-input" min="1" max="500" value="1">
-                    </td>
-
-                    <td class="receipt-row__unit-price">₹2.50</td>
-
-                    <td class="receipt-row__discount">
-                        <div class="discount-wrap">
-                            <input type="number" class="receipt-input" min="0" max="100" value="0">
-                            <span class="discount-suffix">%</span>
-                        </div>
-                    </td>
-
-                    <td class="receipt-row__amount">₹2.50</td>
-
-                    <td class="receipt-row__remove">
-                        <button class="remove-btn">×</button>
-                    </td>
-
-                </tr>
                 <tr class="receipt-row">
 
                     <td class="receipt-row__medicine">

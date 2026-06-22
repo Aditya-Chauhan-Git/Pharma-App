@@ -96,7 +96,16 @@ main {
     background-color: var(--bg);
 }
 
+.search{
+    position: relative;
+}
+
 .search-bar{
+    width: 100%;
+}
+
+.suggestions{
+    position: absolute;
     width: 100%;
 }
 
@@ -118,3 +127,6 @@ footer {
     background-color: var(--bg-surface);
 }
 
+.hidden{
+    display: none;
+}
