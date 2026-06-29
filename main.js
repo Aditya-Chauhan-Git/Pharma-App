@@ -1,3 +1,6 @@
+
+// db directory - C:\Users\Admin\AppData\Roaming\pharma-app
+
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
@@ -9,9 +12,12 @@ const db = new Database(dbPath)
 db.pragma('journal_mode = WAL')
 
 // search handler function
-function handleSearch(e, value) {
-  console.log(app.getPath('userData'));
-  return db.prepare(`SELECT * FROM medicines WHERE name LIKE ?`).all(`${value}%`)
+function handleSearchByLetter(e, value) {
+  return db.prepare(`SELECT * FROM medicines WHERE name LIKE ? LIMIT 20`).all(`${value}%`)
+}
+
+function handleSearchById(e, id) {
+  return db.prepare(`SELECT * FROM medicines WHERE id = ?`).get(`${id}`)
 }
 
 // main window function
@@ -29,7 +35,8 @@ function createMainWindow(){
 }
 
 app.whenReady().then(() => {
-  ipcMain.handle('search-medicine', handleSearch)
+  ipcMain.handle('search-by-letter', handleSearchByLetter)
+  ipcMain.handle('search-by-id', handleSearchById)
   createMainWindow()
 
   app.on('activate', function () {

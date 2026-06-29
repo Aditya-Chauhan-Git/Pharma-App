@@ -1,5 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
-contextBridge.exposeInMainWorld('api', {
-    searchMedicine: (value) => ipcRenderer.invoke('search-medicine', value)
+contextBridge.exposeInMainWorld('searchApi', {
+    searchByLetter: (value) => ipcRenderer.invoke('search-by-letter', value),
+    searchById: (id) => ipcRenderer.invoke('search-by-id', id)
 })
