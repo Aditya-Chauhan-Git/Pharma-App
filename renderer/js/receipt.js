@@ -1,4 +1,6 @@
 import { formatRupee } from "./utilities/money.js"
+import { showResults, currentResults } from "./search.js"
+import { updateSummary } from "./summary.js"
 
 const receiptBodyElem = document.querySelector('#receipt-body')
 
@@ -13,25 +15,8 @@ function loadReceiptItems() {
 
     return JSON.parse(storedItems)
 }
-let receiptItems = loadReceiptItems()
-loadReceipt()
-
-function updateSummary() {
-    let totalMedicines = 0
-    let totalUnits = 0
-    let totalAmount = 0
-    receiptItems.forEach(items => {
-        totalMedicines++
-        totalUnits += items.qty
-        totalAmount += items.amount
-    })
-
-    totalAmount = formatRupee(totalAmount)
-
-    document.querySelector('#total-medicines').innerText = totalMedicines
-    document.querySelector('#total-units').innerText = totalUnits
-    document.querySelector('#total-amount').innerText = totalAmount
-}
+export let receiptItems = loadReceiptItems()
+showReceipt()
 
 function removeFromReceipt(id) {
     receiptItems = receiptItems.filter(item => item.id !== id)
@@ -52,7 +37,7 @@ export function addToReceipt(medicineObj) {
     saveReceiptItems()
 }
 
-export function loadReceipt() {
+export function showReceipt() {
     let html = ''
     receiptItems.forEach((receiptItem)=>{
         html += `
@@ -64,7 +49,7 @@ export function loadReceipt() {
                         </td>
         
                         <td class="receipt-row__qty">
-                            <input type="number" class="receipt-input" data-field="qty" min="1" value="${receiptItem.qty}">
+                            <input type="number" class="receipt-input" data-field="qty" min="1" max="${receiptItem.totalQty}" value="${receiptItem.qty}">
                         </td>
         
                         <td class="receipt-row__unit-price">${formatRupee(receiptItem.mrp)}</td>
@@ -97,7 +82,8 @@ function createReceiptItem(medicineObj) {
         mrp: medicineObj.mrp,
         qty: 1,
         discount: 0,
-        amount: medicineObj.mrp
+        amount: medicineObj.mrp,
+        totalQty: medicineObj.quantity+medicineObj.free_quantity
     }
 }
 
@@ -110,9 +96,11 @@ receiptBodyElem.addEventListener('click', (e)=>{
     const id = Number(row.dataset.id)
 
     removeFromReceipt(id)
-    loadReceipt()
+    showReceipt()
+    showResults(currentResults)
 })
 
+// Update qty and discount input
 receiptBodyElem.addEventListener('change', (e) => {
     const input = e.target.closest('.receipt-input')
     if (!input) return
@@ -121,12 +109,29 @@ receiptBodyElem.addEventListener('change', (e) => {
     const id = Number(row.dataset.id)
 
     const field = input.dataset.field  
-    const value = Number(input.value)
+    let value = Number(input.value)
 
+    
     const item = receiptItems.find(item => item.id === id)
+
+    const fields = {
+        "discount":{
+            min: 0,
+            max: 100
+        },
+        "qty":{
+            min: 1,
+            max: item['totalQty']
+        }
+    }
+
+    if(value < fields[field].min) value = fields[field].min
+    else if(value > fields[field].max) value = fields[field].max
+
     item[field] = value
     item['amount'] = (item['mrp'] - (item['discount'] / 100) * item['mrp']) * item['qty'] 
     saveReceiptItems()
 
-    loadReceipt()
+    showReceipt()
+    showResults(currentResults)
 })

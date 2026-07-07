@@ -1,21 +1,28 @@
-import { addToReceipt, loadReceipt } from "./receipt.js"
+import { addToReceipt, showReceipt, receiptItems } from "./receipt.js"
 
 const searchElem = document.querySelector('#search')
 const medicineSearchElem = document.querySelector('#medicine-searchbar')
 const suggestionsElem = document.querySelector('#suggestions')
 
-function showResults(results) {
+export let currentResults = []
+
+export function showResults(results) {
 
     let html = ''
+    currentResults = results
     results.forEach(result => {
+        const inReceipt = receiptItems.find(item => Number(item.id) === Number(result.id))
+        const receiptQty = inReceipt ? inReceipt.qty : 0
+        const availableQty = result.quantity + result.free_quantity - receiptQty
+        
         html += `
-
-        <div class="suggestions-row" data-id="${result.id}" tabindex="-1">
-                <div class="suggestions-row__name">${result.name}</div>
-                <div class="suggestions-row__mrp">₹${result.mrp}</div>
-                <div class="suggestions-row__qty">${result.quantity + result.free_quantity === 0 ? "Out of Stock": result.quantity + result.free_quantity}</div>
-            </div>
-
+        
+        <div class="suggestions-row" data-id="${result.id}" ${availableQty === 0 ? "data-qty-details='outOfStock'" : "data-qty-details='available'"} tabindex="-1">
+            <div class="suggestions-row__name">${result.name}</div>
+            <div class="suggestions-row__mrp">₹${result.mrp}</div>
+            <div class="suggestions-row__qty">${availableQty === 0 ? "outOFStock" : availableQty}</div>
+        </div>
+        
         `
     })
     suggestionsElem.innerHTML = html
@@ -29,14 +36,21 @@ medicineSearchElem.addEventListener('input', async (e) => {
 })
 
 suggestionsElem.addEventListener('click', async (e) => {
-    const row = e.target.closest('.suggestions-row');
-    if (!row) return; 
+    const row = e.target.closest('.suggestions-row')
+    if (!row) return
 
-    const rowId = row.dataset.id;
-    const medicineObj = await window.searchApi.searchById(rowId);
+    const qtyDetail = row.dataset.qtyDetails
 
-    addToReceipt(medicineObj);
-    loadReceipt();
+    if (qtyDetail === "outOfStock") {
+        return
+    }
+
+    const rowId = row.dataset.id
+    const medicineObj = await window.searchApi.searchById(rowId)
+
+    addToReceipt(medicineObj)
+    showReceipt()
+    showResults(currentResults)
 });
 
 
