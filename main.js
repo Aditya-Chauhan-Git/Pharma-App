@@ -20,8 +20,38 @@ function handleSearchById(e, id) {
   return db.prepare(`SELECT * FROM medicines WHERE id = ?`).get(`${id}`)
 }
 
+// Sell handler function
+function handleSell(e, arr) {
+  if (!arr || arr.length === 0) return { success: false, message: 'Receipt is empty' }
+
+  try {
+    const sellTransaction = db.transaction(() => {
+      const stmt = db.prepare(`
+        UPDATE medicines 
+        SET quantity = quantity - ? 
+        WHERE id = ? AND quantity >= ?
+      `)
+
+      for (const item of arr) {
+        const result = stmt.run(item.qty, item.id, item.qty)
+        if (result.changes === 0) {
+          throw new Error(`Insufficient stock for medicine ${item.name}`)
+        }
+
+      }
+
+    })
+
+    sellTransaction(arr)
+    return { success: true }
+
+  } catch (err) {
+    return { success: false, message: err.message }
+  }
+}
+
 // main window function
-function createMainWindow(){
+function createMainWindow() {
   const mainWindow = new BrowserWindow({
     width: 1200,
     height: 700,
@@ -37,6 +67,8 @@ function createMainWindow(){
 app.whenReady().then(() => {
   ipcMain.handle('search-by-letter', handleSearchByLetter)
   ipcMain.handle('search-by-id', handleSearchById)
+
+  ipcMain.handle('sell', handleSell)
   createMainWindow()
 
   app.on('activate', function () {

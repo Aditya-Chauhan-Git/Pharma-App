@@ -18,6 +18,10 @@ function loadReceiptItems() {
 export let receiptItems = loadReceiptItems()
 showReceipt()
 
+export function resetReceipt(){
+    receiptItems = []
+}
+
 function removeFromReceipt(id) {
     receiptItems = receiptItems.filter(item => item.id !== id)
     saveReceiptItems()

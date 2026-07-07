@@ -1,4 +1,4 @@
-import { receiptItems } from "./receipt.js"
+import { receiptItems, resetReceipt, showReceipt } from "./receipt.js"
 import { formatRupee } from "./utilities/money.js"
 
 const sellBtn = document.querySelector('#sell-btn')
@@ -20,6 +20,14 @@ export function updateSummary() {
     document.querySelector('#total-amount').innerText = totalAmount
 }
 
-sellBtn.addEventListener('click', ()=>{
-    console.log('clieck');
+sellBtn.addEventListener('click', async ()=>{
+    if(receiptItems.length === 0) return
+
+    const result = await window.receiptApi.sell(receiptItems)
+    if(result.success){
+        resetReceipt()
+        showReceipt()
+    } else{
+        console.log('Sell failed:', result.message)
+    }
 })
