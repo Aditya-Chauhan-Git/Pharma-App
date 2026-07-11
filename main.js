@@ -26,18 +26,34 @@ function handleSell(e, arr) {
 
   try {
     const sellTransaction = db.transaction(() => {
-      const stmt = db.prepare(`
+      const decrementStock = db.prepare(`
         UPDATE medicines 
         SET quantity = quantity - ? 
         WHERE id = ? AND quantity >= ?
       `)
 
+      const insertSale = db.prepare(`
+        INSERT INTO sales_history (created_at)
+        VALUES (?)
+        `)
+
+      const insertSaleItems = db.prepare(`
+        INSERT INTO sales_data (sale_id, medicine_id, quantity, mrp_at_sale, discount_percent)
+        VALUES (?, ?, ?, ?, ?)
+        `)
+
+      // get id for the recent sale history added
+      const { lastInsertRowid: saleId } = insertSale.run(new Date().toISOString())
+
       for (const item of arr) {
-        const result = stmt.run(item.qty, item.id, item.qty)
+        // update stock
+        const result = decrementStock.run(item.qty, item.id, item.qty)
         if (result.changes === 0) {
           throw new Error(`Insufficient stock for medicine ${item.name}`)
         }
-
+        
+        // insert items for the particular sale
+        insertSaleItems.run(saleId, item.id, item.qty, item.mrp, item.discount)
       }
 
     })
@@ -72,7 +88,7 @@ app.whenReady().then(() => {
   createMainWindow()
 
   app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    if (BrowserWindow.getAllWindows().length === 0) createMainWindow()
   })
 })
 

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script type="module" src="./js/history.js" defer></script>
+
+</head>
+
+<body>
+    <aside>
+        <div class="brand">
+            <div class="brand__logo">M</div>
+            <div class="brand__name">
+                <div class="title">MPharma</div>
+                <div class="subtitle">Inventory System</div>
+            </div>
+        </div>
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav-link">🏠 Home</a></li>
+                <li class="nav__item"><a href="upload.html" class="nav-link">📤 Upload</a></li>
+                <li class="nav__item"><a href="history.html" class="nav-link">📋 History</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <header class="surface">
+        <h1 class="header__title">History</h1>
+    </header>
+    <main>
+        <h2>Sale History</h2>
+        <div class="history-list">
+            <table class="sale-table">
+
+                <thead id="sale-header">
+                    <tr>
+                        <th>Medicine</th>
+                        <th>QTY</th>
+                        <th>Unit Price</th>
+                        <th>Discount</th>
+                        <th>Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody class="sale-body">
+
+                    <tr class="sale-row" data-id="">
+
+                        <td class="sale-row__name">paracetamol</td>
+
+                        <td class="sale-row__qty">12</td>
+
+                        <td class="sale-row__unit-price">rs 120</td>
+
+                        <td class="sale-row__discount">
+                            <span class="sale-discount">12</span>
+                            <span class="discount-suffix">%</span>
+                        </td>
+
+                        <td class="sale-row__amount">rs. 100</td>
+
+                    </tr>
+
+                </tbody>
+
+                <tfoot class="sale-footer">
+                    <tr class="sale-meta">
+                        <td class="sale-datetime">
+                            <span class="sale-date">8 Jul 2026</span>
+                            <span class="sale-time">01:04 PM</span>
+                        </td>
+                        <td class="sale-total">₹241.00</td>
+                    </tr>
+                </tfoot>
+
+            </table>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+
+</html>

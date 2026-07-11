@@ -1,4 +1,4 @@
-import { receiptItems, resetReceipt, showReceipt } from "./receipt.js"
+import { receiptItems, resetReceipt, showReceipt } from "./data/receiptItems.js"
 import { formatRupee } from "./utilities/money.js"
 
 const sellBtn = document.querySelector('#sell-btn')

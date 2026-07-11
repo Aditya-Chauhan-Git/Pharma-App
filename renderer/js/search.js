@@ -1,4 +1,5 @@
-import { addToReceipt, showReceipt, receiptItems } from "./receipt.js"
+import { addToReceipt, showReceipt, receiptItems } from "./data/receiptItems.js"
+import { updateSummary } from "./summary.js"
 
 const searchElem = document.querySelector('#search')
 const medicineSearchElem = document.querySelector('#medicine-searchbar')
@@ -50,6 +51,7 @@ suggestionsElem.addEventListener('click', async (e) => {
 
     addToReceipt(medicineObj)
     showReceipt()
+    updateSummary()
     showResults(currentResults)
 });
 
@@ -61,5 +63,3 @@ searchElem.addEventListener('focusout', (e)=>{
 searchElem.addEventListener('focusin', ()=>{
     suggestionsElem.style.display = 'block'
 })
-
-// complete the reading in claude correcting receipts functionality
